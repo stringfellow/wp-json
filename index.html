@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="OUTPUT_ENCODING" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" 
+			content="text/html; charset=OUTPUT_ENCODING" />
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+            <script src="jQuery.wp-feed.js"></script>
+	</head>
+	<body>
+        <div id="output">
+            <span class="loading">Loading...</span>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#output').wpFeed('http://blog.example.com/', 'recent');
+                });
+
+        </script>
+
+
+	</body>
+</html>
+
+
