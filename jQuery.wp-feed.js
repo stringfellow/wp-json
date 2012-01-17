@@ -37,11 +37,11 @@
         var displayPosts = function(posts, count) {
             for (var i = 0; i < count; i++) {
                 var post = posts[i];
-                var d = post.date;
+                var d = new Date(post.date);
                 var curr_date = d.getDate();
                 var curr_month = d.getMonth() + 1; //months are zero based
                 var curr_year = d.getFullYear();
-                var post.niceDate = curr_date + "-" + curr_month + "-" + curr_year;
+                post.niceDate = curr_date + "-" + curr_month + "-" + curr_year;
                 elem.append($.render(post, settings.template));
             }
         };
