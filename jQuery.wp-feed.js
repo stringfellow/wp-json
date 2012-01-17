@@ -41,7 +41,6 @@
             }
         };
         
-        console.log(feed)
         $.ajax(feed, {
             dataType: 'jsonp',
             type: 'GET',
