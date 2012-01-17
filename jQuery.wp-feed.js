@@ -26,11 +26,13 @@
         var settings = $.extend( {
             'type': 'recent',
             'limit': false,
-            'template': default_html
+            'template': default_html,
+            'crossDomain': true
         }, options);
 
         var elem = this;
-        var feed = base + '?json=' + urlTypes[settings.type];
+        var feed = base;
+        var query = 'json=' + urlTypes[settings.type];
 
         var displayPosts = function(posts, count) {
             for (var i = 0; i < count; i++) {
@@ -39,13 +41,17 @@
             }
         };
         
+        console.log(feed)
         $.ajax(feed, {
-            dataType: 'json',
+            dataType: 'jsonp',
+            type: 'GET',
+            data: query,
+            crossDomain: settings.crossDomain,
             success: function(data) {
                 elem.find('.loading').remove();
                 displayPosts(data.posts, (settings.limit || data.count))
             },
-            error: function() {
+            error: function(jqXHR, textStatus, errorThrown) {
                 elem
                     .find('.loading')
                     .addClass('error')
