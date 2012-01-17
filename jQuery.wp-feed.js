@@ -15,7 +15,7 @@
 (function($) {
      $.fn.wpFeed = function(base, options) {
         var urlTypes = {
-            'recent': 'get_recent_posts',
+            'recent': 'get_recent_posts'
         };
 
         var default_html = "<div class=\"post\">" +
