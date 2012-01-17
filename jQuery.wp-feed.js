@@ -35,12 +35,12 @@
         var displayPosts = function(posts, count) {
             for (var i = 0; i < count; i++) {
                 var post = posts[i];
-                console.log(post);
                 elem.append($.render(post, settings.template));
             }
         };
         
         $.ajax(feed, {
+            dataType: 'json',
             success: function(data) {
                 elem.find('.loading').remove();
                 displayPosts(data.posts, (settings.limit || data.count))
