@@ -18,8 +18,15 @@
             'recent': 'get_recent_posts',
         };
 
+        var default_html = "<div class=\"post\">" +
+            "<a href=\"{{=url}}\">" +
+            "{{=title!}}" +
+            "</div>";
+
         var settings = $.extend( {
             'type': 'recent',
+            'limit': false,
+            'template': default_html
         }, options);
 
         var elem = this;
@@ -28,19 +35,15 @@
         var displayPosts = function(posts, count) {
             for (var i = 0; i < count; i++) {
                 var post = posts[i];
-                elem.append(
-                    '<div class="post"><a href="' + 
-                    post.url + 
-                    '">' + 
-                    post.title + 
-                    '</a></div>');
+                console.log(post);
+                elem.append($.render(post, settings.template));
             }
         };
         
         $.ajax(feed, {
             success: function(data) {
                 elem.find('.loading').remove();
-                displayPosts(data.posts, data.count)
+                displayPosts(data.posts, (settings.limit || data.count))
             },
             error: function() {
                 elem

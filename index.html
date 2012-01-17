@@ -7,15 +7,31 @@
 		<meta http-equiv="Content-Type" 
 			content="text/html; charset=OUTPUT_ENCODING" />
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+            <script src="lib/jsrender/jsrender.js"></script>
             <script src="jQuery.wp-feed.js"></script>
 	</head>
 	<body>
         <div id="output">
             <span class="loading">Loading...</span>
         </div>
+        <div id="template" style="display: none;">
+            <li>
+                <a class="home_press_img" href="http://blog.example.com/" target="_blank"><img width="78" height="78" alt="Visit the example blog site" src="" /></a>
+                <h3><a class="all_link" href="http://blog.example.com/" target="_blank">Visit blog</a><a href="http://blog.example.com/" target="_blank">Example blog</a></h3>
+                <a title="#" class="external_link" target="_blank" href="#">{{=title!}}</a><a title="#" class="external_link" target="_blank" href="#">{{=date}}</a>
+                <span>{{=excerpt!}}</span>
+            </li>
+        </div>
         <script type="text/javascript">
+
+
+
             $(document).ready(function() {
-                $('#output').wpFeed('http://blog.example.com/', 'recent');
+                    $('#output').wpFeed('http://blog.example.com', {
+                        'type': 'recent',
+                        'limit': 1,
+                        'template': $('#template').html()
+                    });
                 });
 
         </script>
