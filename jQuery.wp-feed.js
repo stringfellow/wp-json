@@ -20,7 +20,7 @@
 
         var default_html = "<div class=\"post\">" +
             "<a href=\"{{url}}\">" +
-            "{{&title}}" +
+            "{{title}}" +
             "</div>";
 
         var settings = $.extend( {
@@ -42,7 +42,15 @@
                 var curr_month = d.getMonth() + 1; //months are zero based
                 var curr_year = d.getFullYear();
                 post.niceDate = curr_date + "-" + curr_month + "-" + curr_year;
-                elem.append(Mustache.render(settings.template, post));
+
+                var outputHtml = "";
+                if (Mustache.hasOwnProperty('to_html')) {  // cope with Mustache 0.4.0
+                    outputHtml = Mustache.to_html(settings.template, post);
+                }
+                if (Mustache.hasOwnProperty('render')) {  // cope with Mustache 0.5.0
+                    outputHtml = Mustache.to_html(settings.template, post);
+                }
+                elem.append(outputHtml);
             }
         };
         
