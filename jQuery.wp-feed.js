@@ -19,8 +19,8 @@
         };
 
         var default_html = "<div class=\"post\">" +
-            "<a href=\"{{=url}}\">" +
-            "{{=title!}}" +
+            "<a href=\"{{url}}\">" +
+            "{{&title}}" +
             "</div>";
 
         var settings = $.extend( {
@@ -42,7 +42,7 @@
                 var curr_month = d.getMonth() + 1; //months are zero based
                 var curr_year = d.getFullYear();
                 post.niceDate = curr_date + "-" + curr_month + "-" + curr_year;
-                elem.append($.render(post, settings.template));
+                elem.append(Mustache.render(settings.template, post));
             }
         };
         
